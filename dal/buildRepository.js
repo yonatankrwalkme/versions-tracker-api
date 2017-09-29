@@ -1,31 +1,41 @@
 const BuildModel = require('./buildModel');
 
-function buildRepository() {
-
-    function convertToDto(build) {
-        return {application: build.application, deployStatus: build.deployStatus, buildData: build.buildData}
+function convertToDto(build) {
+    return {
+        projectName: build.projectName, 
+        buildStatus: build.buildStatus, 
+        commitsData: JSON.stringify(build.commitsData),
+        versionData: JSON.stringify(build.versionData),
     }
-
-    function save(build) {
-        BuildModel
-            .sync({force: false})
-            .then(() => {
-                return BuildModel.create(convertToDto);
-            });
-    }
-
-    function getAll(daysBack) {
-        daysBack = daysBack ? daysBack : 10;
-        BuildModel.findAll({
-            where: {
-                createdAt: {
-                    $gt: new Date(new Date() - daysBack * 24 * 60 * 60 * 1000)
-                }
-            }
-        })
-    }
-
-    return {save: save}
 }
 
-module.exports = buildRepository;
+function convertToDomain(dto) {
+    return {
+        projectName: dto.projectName, 
+        buildStatus: dto.buildStatus, 
+        commitsData: JSON.parse(dto.commitsData),
+        versionData: JSON.parse(dto.versionData),
+    }
+}
+
+exports.save = function (build) {
+    return BuildModel
+        .sync({force: false})
+        .then(() => {
+            return BuildModel.create(convertToDto(build));
+        });
+}
+
+exports.getAll = function (daysBack) {
+    return new Promise((resolve, reject) => {
+    daysBack = daysBack
+        ? daysBack
+        : 10;
+    BuildModel.findAll({
+        order: [['id', 'DESC']],
+        raw : true
+    }).then((dtos) => {
+          resolve(dtos.map((dto) => convertToDomain(dto)));
+        })
+    })
+}

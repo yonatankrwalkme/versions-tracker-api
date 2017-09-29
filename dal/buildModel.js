@@ -2,15 +2,18 @@ const Sequelize = require('sequelize');
 const db = require('./index');
 
 const BuildModel = db.define('builds', {
-    application: {
+    projectName: {
       type: Sequelize.STRING
     },
-    deployStatus: {
-      type: Sequelize.INTEGER
-    },
-    buildData: {
+    buildStatus: {
       type: Sequelize.STRING
     },
+    commitsData: {
+      type: Sequelize.STRING
+    },
+    versionData : {
+      type: Sequelize.STRING
+    }
 
   });
   

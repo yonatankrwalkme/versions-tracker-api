@@ -11,7 +11,6 @@ const sequelize = new Sequelize('versions-manager', 'root', 'jony55', {
     },
   });
 
-
 sequelize
   .authenticate()
   .then(() => {
@@ -20,4 +19,5 @@ sequelize
   .catch(err => {
     console.error('Unable to connect to the database:', err);
   });
+
 module.exports = sequelize;
