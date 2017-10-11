@@ -14,6 +14,6 @@ router.get('/notifyChange', function (req, res, next) {
     console.log('notifyingChange');
     eventsManager.notifyVersionChange(versions_data[0]);
     res.json("OK");
-})
+});
 
 module.exports = router;

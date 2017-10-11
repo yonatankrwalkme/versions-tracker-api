@@ -5,6 +5,7 @@ const splitIntoBuckets = (versions) => {
 
     for (var i = 0; i < versions.length; i++) {
         var version = versions[i];
+        console.log(version);
         const name = version.projectName.toLowerCase();
         let workedOnBucket = buckets[name];
         if (!workedOnBucket) {

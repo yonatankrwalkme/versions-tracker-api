@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('versions-manager', 'root', 'jony55', {
-    host: 'localhost',
+const sequelize = new Sequelize('versions-manager', 'root', 'example', {
+    host: 'db',
     dialect: 'mysql',
   
     pool: {
