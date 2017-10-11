@@ -1,0 +1,24 @@
+version: '3.1'
+
+services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+
+  api:
+   build:
+     context: .
+     dockerfile: Dockerfile
+   volumes:
+    - ./:/home/app/code:cached
+   ports:
+    - 3001:3001
+    - 8000:8000
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8090:8080
