@@ -1,8 +1,3 @@
----
-
-
----
-
 <h1 id="versions-manager-api"><strong>versions-manager-api</strong></h1>
 <p>This is the back end service of the versions display application, you can get the client side application here: <a href="https://github.com/yonatankr/versions-display">Versions Display</a>.</p>
 <h2 id="prerequisites"><strong>Prerequisites:</strong></h2>
