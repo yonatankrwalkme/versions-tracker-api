@@ -1,4 +1,4 @@
-version: '3.1'
+version: '2.1'
 
 services:
   db:
@@ -6,19 +6,24 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example
+    volumes:
+      - my-datavolume:/var/lib/mysql
+    ports:
+      - 3307:3306
 
   api:
    build:
      context: .
      dockerfile: Dockerfile
-   volumes:
-    - ./:/home/app/code:cached
    ports:
     - 3001:3001
     - 8000:8000
+   depends_on:
+    - db
+   volumes:
+    - api-data:/home/app/code/node_modules
+    - ./:/home/app/code
 
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8090:8080
+volumes:
+  api-data:
+  my-datavolume:
