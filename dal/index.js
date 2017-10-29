@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('versions-manager', 'root', 'example', {
+const sequelize = new Sequelize('versions_manager', 'root', 'example', {
     host: 'db',
     dialect: 'mysql',
   
