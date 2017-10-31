@@ -5,6 +5,9 @@
   "scripts": {
     "start": "node ./bin/www"
   },
+  "optionalDependencies": {
+    "fsevents": "*"
+  },
   "dependencies": {
     "body-parser": "~1.17.1",
     "content-type": "^1.0.4",
