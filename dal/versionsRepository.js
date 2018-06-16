@@ -1,4 +1,4 @@
-const BuildModel = require('./buildModel');
+const VersionModel = require('./versionModel');
 
 function convertToDto(build) {
     return {
@@ -19,7 +19,7 @@ function convertToDomain(dto) {
 }
 
 exports.save = function (build) {
-    return BuildModel.create(convertToDto(build));
+    return VersionModel.create(convertToDto(build));
 };
 
 exports.getAll = function (daysBack) {
@@ -27,7 +27,7 @@ exports.getAll = function (daysBack) {
     daysBack = daysBack
         ? daysBack
         : 10;
-    BuildModel.findAll({
+    VersionModel.findAll({
         order: [['id', 'DESC']],
         raw : true
     }).then((dtos) => {

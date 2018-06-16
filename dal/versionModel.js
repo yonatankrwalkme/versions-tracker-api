@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('./index');
 
-const BuildModel = db.define('builds', {
+const BuildModel = db.define('versions', {
     projectName: {
       type: Sequelize.STRING
     },
