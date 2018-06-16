@@ -4,12 +4,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var buildModel = require('./dal/buildModel');
-
-var index = require('./routes/index');
-var versions = require('./routes/versions');
-var builds = require('./routes/builds');
-
 var app = express();
 
 // uncomment after placing your favicon in /public
@@ -20,15 +14,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+const routes = require('../api/routes');
+
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
 
-app.use('/', index);
-app.use('/versions', versions);
-app.use('/builds', builds);
+routes(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

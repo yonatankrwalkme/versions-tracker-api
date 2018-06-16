@@ -14,7 +14,8 @@ const BuildModel = db.define('builds', {
     versionData : {
       type: Sequelize.STRING
     }
-
   });
+
+BuildModel.sync({force: true});
   
 module.exports = BuildModel;

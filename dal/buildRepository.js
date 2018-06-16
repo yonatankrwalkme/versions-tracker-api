@@ -19,12 +19,8 @@ function convertToDomain(dto) {
 }
 
 exports.save = function (build) {
-    return BuildModel
-        .sync({force: false})
-        .then(() => {
-            return BuildModel.create(convertToDto(build));
-        });
-}
+    return BuildModel.create(convertToDto(build));
+};
 
 exports.getAll = function (daysBack) {
     return new Promise((resolve, reject) => {
@@ -38,4 +34,4 @@ exports.getAll = function (daysBack) {
           resolve(dtos.map((dto) => convertToDomain(dto)));
         })
     })
-}
+};
