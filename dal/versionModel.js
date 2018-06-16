@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('./index');
 
-const BuildModel = db.define('versions', {
+const VersionsModel = db.define('versions', {
     projectName: {
       type: Sequelize.STRING
     },
@@ -19,5 +19,5 @@ const BuildModel = db.define('versions', {
     }
   });
 
-BuildModel.sync({force: true});
-module.exports = BuildModel;
+// VersionsModel.sync({force: true});
+module.exports = VersionsModel;
