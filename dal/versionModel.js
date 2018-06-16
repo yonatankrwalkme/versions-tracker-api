@@ -5,7 +5,10 @@ const BuildModel = db.define('versions', {
     projectName: {
       type: Sequelize.STRING
     },
-    buildStatus: {
+    versionId: {
+        type: Sequelize.STRING
+    },
+    status: {
       type: Sequelize.STRING
     },
     commitsData: {
@@ -17,5 +20,4 @@ const BuildModel = db.define('versions', {
   });
 
 BuildModel.sync({force: true});
-  
 module.exports = BuildModel;

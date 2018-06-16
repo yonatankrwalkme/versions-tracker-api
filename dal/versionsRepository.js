@@ -1,25 +1,27 @@
 const VersionModel = require('./versionModel');
 
-function convertToDto(build) {
+function convertToDto(version) {
     return {
-        projectName: build.projectName, 
-        buildStatus: build.buildStatus, 
-        commitsData: JSON.stringify(build.commitsData),
-        versionData: JSON.stringify(build.versionData),
+        projectName: version.projectName,
+        status: version.status,
+        commitsData: JSON.stringify(version.commitsData),
+        versionData: JSON.stringify(version.versionData),
+        versionId : version.versionId
     }
 }
 
 function convertToDomain(dto) {
     return {
         projectName: dto.projectName, 
-        buildStatus: dto.buildStatus, 
+        status: dto.status,
         commitsData: JSON.parse(dto.commitsData),
         versionData: JSON.parse(dto.versionData),
+        versionId : dto.versionId
     }
 }
 
-exports.save = function (build) {
-    return VersionModel.create(convertToDto(build));
+exports.save = function (version) {
+    return VersionModel.create(convertToDto(version));
 };
 
 exports.getAll = function (daysBack) {
