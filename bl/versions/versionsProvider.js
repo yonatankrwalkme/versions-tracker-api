@@ -1,4 +1,4 @@
-const buildRepository = require('../../dal/buildRepository');
+const VersionsRepository = require('../../dal/versionsRepository');
 
 const splitIntoBuckets = (versions) => {
     const buckets = {};
@@ -19,37 +19,37 @@ const splitIntoBuckets = (versions) => {
     }
 
     return buckets;
-}
+};
 
 const augment = (projectBuckets) => {
-    for(projectName in projectBuckets)
+    for (projectName in projectBuckets)
         if (projectBuckets.hasOwnProperty(projectName)) {
             const versions = projectBuckets[projectName];
             for (var i = 0; i < versions.length; i++) {
                 var version = versions[i];
-                for (var j = 0; j < version.commitsData.length; j++) {
-                    var commitData = version.commitsData[j];
-                    appendImage(commitData);
+                for (var j = 0; j < version.commits.length; j++) {
+                    var commit = version.commits[j];
+                    appendImage(commit);
                 }
-                
+
             }
         }
     return projectBuckets;
-}
+};
 
 const appendImage = (commitData) => {
-    var num = Math.round(Math.random()*100) + 1
+    var num = Math.round(Math.random() * 100) + 1;
     var isMale = (num % 2) === 0
     if (isMale) {
         commitData.imageUrl = `https://randomuser.me/api/portraits/men/${num}.jpg`
     } else {
         commitData.imageUrl = `https://randomuser.me/api/portraits/women/${num}.jpg`
     }
-}
+};
 
 exports.provide = function () {
     return new Promise((resolve, reject) => {
-        return buildRepository
+        return VersionsRepository
             .getAll()
             .then((versions) => {
                 const projectsBuckets = splitIntoBuckets(versions);
@@ -58,4 +58,4 @@ exports.provide = function () {
 
     })
 
-}
+};

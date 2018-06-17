@@ -4,9 +4,9 @@ function convertToDto(version) {
     return {
         projectName: version.projectName,
         status: version.status,
-        commitsData: JSON.stringify(version.commitsData),
-        versionData: JSON.stringify(version.versionData),
-        versionId : version.versionId
+        commits: JSON.stringify(version.commits),
+        versionId : version.versionId,
+        environment: version.environment
     }
 }
 
@@ -14,9 +14,9 @@ function convertToDomain(dto) {
     return {
         projectName: dto.projectName, 
         status: dto.status,
-        commitsData: JSON.parse(dto.commitsData),
-        versionData: JSON.parse(dto.versionData),
-        versionId : dto.versionId
+        commits: JSON.parse(dto.commits),
+        versionId : dto.versionId,
+        environment: dto.environment
     }
 }
 

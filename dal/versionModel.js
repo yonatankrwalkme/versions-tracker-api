@@ -11,10 +11,10 @@ const VersionsModel = db.define('versions', {
     status: {
       type: Sequelize.STRING
     },
-    commitsData: {
-      type: Sequelize.STRING
+    environment: {
+        type: Sequelize.STRING
     },
-    versionData : {
+    commits: {
       type: Sequelize.STRING
     }
   });

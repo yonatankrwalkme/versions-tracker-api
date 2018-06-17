@@ -1,7 +1,9 @@
-
-
 exports.extract = (ciDataRequest) => {
     return {
-        versionId : ciDataRequest.versionId
+        projectName : ciDataRequest.projectName,
+        versionId : ciDataRequest.versionId,
+        status : ciDataRequest.status,
+        commits : ciDataRequest.commits,
+        environment : ciDataRequest.environment
     }
 };
