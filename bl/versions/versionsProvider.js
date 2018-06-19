@@ -1,4 +1,4 @@
-const VersionsRepository = require('../../dal/versionsRepository');
+const VersionsRepository = require('../../dal/versions/versionsRepository');
 
 const splitIntoBuckets = (versions) => {
     const buckets = {};
