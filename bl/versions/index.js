@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const eventsManager =  require('../eventsManager/index');
 const versionsProvider = require('./versionsProvider');
 const buildsRepository = require('../../dal/buildRepository');
@@ -12,7 +12,7 @@ router.post('/', function (req, res, next) {
     return buildsRepository.save(build).then(() => {
         const version = versionExtractor.extract(build);
         return versionRepository.save(version).then(() => {
-            // eventHandler.handleBuildEvent(build);
+            eventHandler.handleBuildEvent(build);
             res.json(version);
         })
     })

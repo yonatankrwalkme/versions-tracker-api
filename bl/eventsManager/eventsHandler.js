@@ -3,10 +3,10 @@ const emitter = require ('./versionEventsEmitter');
 exports.handleBuildEvent = function (build) {
     const versionEvent = build;
     emitter.notifyVersionChange(versionEvent);
-}
+};
 
-function extractCommitters(commitsData) {
-    return commitsData.map((commitData) => {
+function extractCommitters(commits) {
+    return commits.map((commitData) => {
         return commitData.username
     });
 }

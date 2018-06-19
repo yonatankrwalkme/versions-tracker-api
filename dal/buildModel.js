@@ -3,7 +3,7 @@ const db = require('./index');
 
 const BuildModel = db.define('builds', {
     buildData: {
-      type: Sequelize.STRING
+      type: Sequelize.TEXT
     }
   });
 

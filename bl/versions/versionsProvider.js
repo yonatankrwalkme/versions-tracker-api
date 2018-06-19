@@ -9,11 +9,11 @@ const splitIntoBuckets = (versions) => {
         const name = version.projectName.toLowerCase();
         let workedOnBucket = buckets[name];
         if (!workedOnBucket) {
-            buckets[name] = []
+            buckets[name] = [];
             workedOnBucket = buckets[name];
         }
 
-        if (workedOnBucket.length < 2 && (workedOnBucket.length == 0 || workedOnBucket[0].buildStatus != 'complete')) {
+        if (workedOnBucket.length < 2 && (workedOnBucket.length == 0 || workedOnBucket[0].status != 'complete')) {
             workedOnBucket.push(version)
         }
     }
@@ -39,7 +39,7 @@ const augment = (projectBuckets) => {
 
 const appendImage = (commitData) => {
     var num = Math.round(Math.random() * 100) + 1;
-    var isMale = (num % 2) === 0
+    var isMale = (num % 2) === 0;
     if (isMale) {
         commitData.imageUrl = `https://randomuser.me/api/portraits/men/${num}.jpg`
     } else {
