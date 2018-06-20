@@ -10,5 +10,7 @@ exports.handleBuildEvent = function (build) {
         versionBetaEventHandler.handle(build)
     ]).then((results) => {
         return results;
+    }).error((error) => {
+        return error
     })
 };

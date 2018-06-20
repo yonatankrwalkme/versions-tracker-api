@@ -12,5 +12,8 @@ exports.sendMail = (templateName, dataModel, recipients, subject) => {
         body: mailModel,
         json: true // Automatically stringifies the body to JSON
     };
-    return rp(options);
+    return rp(options).catch((err) => {
+        console.log(`sendMail`, err);
+        return err
+    });
 };

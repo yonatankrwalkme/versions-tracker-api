@@ -5,5 +5,5 @@ exports.handle = (version) => {
     if (version.status !== "init" &&  version.status !== "complete")
         return Promise.resolve();
 
-    return emailer.sendEmail(`version-${version.status}`, {version}, versionRecipientsCreator.create(version))
+    return emailer.sendMail(`version-${version.status}`, {version}, versionRecipientsCreator.generate(version))
 };
