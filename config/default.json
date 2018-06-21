@@ -1,0 +1,7 @@
+{
+  "mailing": {
+    "uri": "http://localhost:3002",
+    "suffix": "@walkme.com",
+    "sender" : "automation@walkme.com"
+  }
+}

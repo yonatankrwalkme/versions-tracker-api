@@ -1,5 +1,7 @@
+const config = require('config');
+
 exports.generate = (version) => {
     return version.commits.map((commit) => {
-        return `${commit.name}@walkme.com` //TODO : Take this into configuration
+        return `${commit.name}${config.get("mailing").suffix}`
     })
 };
