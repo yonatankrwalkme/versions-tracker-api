@@ -1,7 +1,9 @@
 exports.generate = (version) => {
     if (version.status.toLowerCase() === "init")
-        return `STARTING DEPLOYMENT of ${version.projectName} Version ${version.versionId}`;
+        return `${version.projectName} - STARTING DEPLOYMENT`;
+    if (version.status.toLowerCase() === "deploying")
+        return `${version.projectName} - PASSED BETA - DEPLOYING TO PRODUCTION`;
     if (version.status.toLowerCase() === "complete")
         return `${version.projectName} Version ${version.versionId} - deployment COMPLETE`;
-    return `${version.projectName} Version ${version.versionId} is in ${version.status.toUpperCase()}.`;
+    return `${version.projectName} - ${version.status.toUpperCase()}.`;
 };

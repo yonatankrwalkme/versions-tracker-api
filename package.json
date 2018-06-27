@@ -9,6 +9,7 @@
     "fsevents": "*"
   },
   "dependencies": {
+    "bluebird": "^3.5.1",
     "body-parser": "~1.17.1",
     "config": "^1.30.0",
     "content-type": "^1.0.4",
@@ -16,12 +17,14 @@
     "debug": "~2.6.3",
     "express": "~4.15.2",
     "jade": "~1.11.0",
+    "moment": "^2.22.2",
     "morgan": "~1.8.1",
     "mysql2": "^1.4.2",
     "request": "^2.87.0",
     "request-promise": "^4.2.2",
     "sequelize": "^4.10.2",
     "serve-favicon": "~2.4.2",
-    "socket.io": "^2.0.3"
+    "socket.io": "^2.0.3",
+    "uuid": "^3.3.0"
   }
 }

@@ -11,7 +11,8 @@ function sendToAdmins(version, approvalLinks) {
             approvalLinks,
             version
         },
-        ["yonatan.k@walkme.com","tomer.l@walkme.com","itai.s@walkme.com"],
+        // ["yonatan.k@walkme.com","tomer.l@walkme.com","itai.s@walkme.com"], // TODO : Redo this.
+        ["yonatan.k@walkme.com"],
         versionSubjectGenerator.generate(version),
         config.get("mailing").sender)
 }
@@ -21,7 +22,8 @@ function sendToIndividuals(version, approvalLinks) {
         return emailer.sendMail('version-beta-approval', {
                 approvalLink,
                 version
-            }, versionRecipientsCreator.generate(version),
+            },
+            versionRecipientsCreator.generate(version),
             versionSubjectGenerator.generate(version),
             config.get("mailing").sender)
     });

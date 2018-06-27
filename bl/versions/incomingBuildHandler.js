@@ -7,7 +7,7 @@ exports.handle = (build) => {
     return buildsRepository.save(build).then(() => {
         const version = versionExtractor.extract(build);
         return versionRepository.save(version).then(() => {
-            return eventHandler.handleBuildEvent(build).then((results) => {
+            return eventHandler.handleBuildEvent(version).then((results) => {
                 return version;
             });
         })

@@ -1,4 +1,5 @@
 const VersionsRepository = require('../../dal/versions/versionsRepository');
+const config = require('config');
 
 const splitIntoBuckets = (versions) => {
     const buckets = {};
@@ -38,13 +39,15 @@ const augment = (projectBuckets) => {
 };
 
 const appendImage = (commitData) => {
-    var num = Math.round(Math.random() * 100) + 1;
-    var isMale = (num % 2) === 0;
-    if (isMale) {
-        commitData.imageUrl = `https://randomuser.me/api/portraits/men/${num}.jpg`
-    } else {
-        commitData.imageUrl = `https://randomuser.me/api/portraits/women/${num}.jpg`
-    }
+    const imageName = `${commitData.name.replace(".", "")}.jpg`;
+    commitData.imageUrl = `${config.get("client").uri}/employees/${imageName}`;
+    // var num = Math.round(Math.random() * 100) + 1;
+    // var isMale = (num % 2) === 0;
+    // if (isMale) {
+    //     commitData.imageUrl = `https://randomuser.me/api/portraits/men/${num}.jpg`
+    // } else {
+    //     commitData.imageUrl = `https://randomuser.me/api/portraits/women/${num}.jpg`
+    // }
 };
 
 exports.provide = function () {

@@ -3,11 +3,18 @@ const router = express.Router();
 const eventsManager =  require('../eventsManager/index');
 const versionsProvider = require('./versionsProvider');
 const incomingBuildHandler = require('./incomingBuildHandler');
+const approvalFlowHandler = require ('../betaApprovalsManager/approvalFlowHandler');
 
 router.post('/', function (req, res, next) {
     const build = req.body;
     return incomingBuildHandler.handle(build).then((version) => {
         res.json(version);
+    });
+});
+
+router.get('/respondToApprovalLink', (req,res, next) => {
+    return approvalFlowHandler.handle(req).then((response) => {
+        res.json(response);
     });
 });
 

@@ -8,7 +8,7 @@ exports.handle = (version) => {
         return Promise.resolve();
 
     return emailer.sendMail(
-        `version-${version.status}`,
+        `version-status`,
         {version},
         versionRecipientsCreator.generate(version),
         versionSubjectGenerator.generate(version),
