@@ -1,0 +1,17 @@
+{
+  "client" : {
+    "uri" : "http://localhost:3000"
+  },
+  "mailing": {
+    "uri": "http://localhost:3002",
+    "suffix": "@walkme.com",
+    "sender" : "insights-deployment@walkme.com"
+  },
+  "api" : {
+    "uri" : "http://localhost:3001"
+  },
+  "ci" : {
+    "approvalLink": "http://localhost:3001"
+  }
+
+}

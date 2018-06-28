@@ -20,7 +20,7 @@
 <pre><code>{
 	"projectName" : "[name]",
 	"buildStatus" : "[complete]", 
-	"commitsData" : [
+	"commits" : [
         {
 			"username" : "Awesome developer 1",
             "imageUrl" : "[urlToDeveloper1Image]",
