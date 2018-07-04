@@ -1,6 +1,6 @@
 const rp = require('request-promise');
-const config = require('config');
-const emailerApi = `${config.get("mailing").uri}/emailing`;
+const configValueProvider = require('../../services/configValueProvider');
+const emailerApi = `${configValueProvider.getValue("backstageApiUrl")}/emailing`;
 
 exports.sendMail = (templateName, dataModel, recipients, subject, sender) => {
     const mailModel = {templateName, dataModel, recipients, subject, sender};

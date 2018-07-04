@@ -3,14 +3,14 @@ const versionRecipientsCreator = require('../../versions/versionRecipientsCreato
 const versionSubjectGenerator = require('../../versions/versionSubjectGenerator');
 const versionsRepository = require('../../../dal/versions/versionsRepository');
 const bluebird = require('bluebird');
-const config = require('config');
+const configValueProvider = require('../../../services/configValueProvider');
 const eventsEmitter = require('../../eventsManager/clientEventsEmitter');
 const rp = require('request-promise');
 
 exports.handle = (version) => {
 
     version.status = "deploying";
-    const ciApproveVersionLink = `${config.get('ci').approvalLink}?versionId=${version.versionId}`;
+    const ciApproveVersionLink = `${configValueProvider.getValue('versionTrackerApiUrl')}?versionId=${version.versionId}`;
     const options = {
         uri : ciApproveVersionLink
     };

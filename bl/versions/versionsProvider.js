@@ -1,5 +1,5 @@
 const VersionsRepository = require('../../dal/versions/versionsRepository');
-const config = require('config');
+const configValueProvider = require('../../services/configValueProvider');
 
 const splitIntoBuckets = (versions) => {
     const buckets = {};
@@ -40,7 +40,7 @@ const augment = (projectBuckets) => {
 
 const appendImage = (commitData) => {
     const imageName = `${commitData.name.replace(".", "")}.jpg`;
-    commitData.imageUrl = `${config.get("client").uri}/employees/${imageName}`;
+    commitData.imageUrl = `${configValueProvider.getValue("versionsTrackerClientUrl")}/employees/${imageName}`;
     // var num = Math.round(Math.random() * 100) + 1;
     // var isMale = (num % 2) === 0;
     // if (isMale) {

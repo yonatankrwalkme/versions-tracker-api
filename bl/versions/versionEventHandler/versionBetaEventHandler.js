@@ -1,6 +1,6 @@
 const bluebird = require('bluebird');
 const emailer = require('../../emailer/emailer');
-const config = require('config');
+const configValueProvider = require('../../../services/configValueProvider');
 const betaApprovalManager = require('../../betaApprovalsManager/betaApprovalsManager');
 const versionRecipientsCreator = require('../versionRecipientsCreator');
 const approvalLinksGenerator = require('../../betaApprovalsManager/approvalLinksGenerator');
@@ -14,7 +14,7 @@ function sendToAdmins(version, approvalLinks) {
         // ["yonatan.k@walkme.com","tomer.l@walkme.com","itai.s@walkme.com"], // TODO : Redo this.
         ["yonatan.k@walkme.com"],
         versionSubjectGenerator.generate(version),
-        config.get("mailing").sender)
+        configValueProvider.getValue("emailingSender"))
 }
 
 function sendToIndividuals(version, approvalLinks) {
@@ -25,7 +25,7 @@ function sendToIndividuals(version, approvalLinks) {
             },
             versionRecipientsCreator.generate(version),
             versionSubjectGenerator.generate(version),
-            config.get("mailing").sender)
+            configValueProvider.getValue("emailingSender"))
     });
 }
 

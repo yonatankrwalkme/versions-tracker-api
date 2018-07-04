@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
+const configValueProvider = require('../services/configValueProvider');
 
-const sequelize = new Sequelize('versions_manager', 'versionsManager', 'versionsManager', {
-    // host: 'db',
-    host: 'localhost',
+const sequelize = new Sequelize(configValueProvider.getValue('dbSchemaName'), configValueProvider.getValue('dbUser'), configValueProvider.getValue('dbPassword'), {
+    host: configValueProvider.getValue('dbHost'),
     dialect: 'mysql',
     query: {raw: true},
     pool: {
