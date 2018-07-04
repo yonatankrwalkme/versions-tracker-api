@@ -1,11 +1,11 @@
 {
-  "versionsTrackerClientUrl" : "http://localhost:3000",
-  "dbSchemaName" : "versions_manager",
-  "dbUser" : "versionsManager",
-  "dbPassword" : "versionsManager",
-  "dbHost" : "localhost",
-  "backstageApiUrl" : "http://localhost:3002",
-  "emailingSuffix": "@walkme.com",
-  "emailingSender" : "insights-deployment@walkme.com",
-  "versionTrackerApiUrl" : "http://localhost:3001"
+  "VERSIONS_TRACKER_CLIENT_URL" : "http://localhost:3000",
+  "DB_SCHEMA_NAME" : "versions_manager",
+  "DB_USER" : "versionsManager",
+  "DB_PASSWORD" : "versionsManager",
+  "DB_HOST" : "localhost",
+  "BACKSTAGE_API_URL" : "http://localhost:3002",
+  "EMAILING_SUFFIX": "@walkme.com",
+  "EMAILING_SENDER" : "insights-deployment@walkme.com",
+  "VERSION_TRACKER_API_URL" : "http://localhost:3001"
 }

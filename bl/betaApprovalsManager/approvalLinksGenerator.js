@@ -1,5 +1,5 @@
 const configValueProvider = require('../../services/configValueProvider');
-const approveLinksUrl = `${configValueProvider.getValue("versionTrackerApiUrl")}/versions/respondToApprovalLink`;
+const approveLinksUrl = `${configValueProvider.getValue("VERSION_TRACKER_API_URL")}/versions/respondToApprovalLink`;
 
 exports.generate = (approvals) => {
     return approvals.map((approval) => {

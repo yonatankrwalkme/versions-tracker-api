@@ -14,7 +14,7 @@ function sendToAdmins(version, approvalLinks) {
         // ["yonatan.k@walkme.com","tomer.l@walkme.com","itai.s@walkme.com"], // TODO : Redo this.
         ["yonatan.k@walkme.com"],
         versionSubjectGenerator.generate(version),
-        configValueProvider.getValue("emailingSender"))
+        configValueProvider.getValue("EMAILING_SENDER"))
 }
 
 function sendToIndividuals(version, approvalLinks) {
@@ -25,7 +25,7 @@ function sendToIndividuals(version, approvalLinks) {
             },
             versionRecipientsCreator.generate(version),
             versionSubjectGenerator.generate(version),
-            configValueProvider.getValue("emailingSender"))
+            configValueProvider.getValue("EMAILING_SENDER"))
     });
 }
 
