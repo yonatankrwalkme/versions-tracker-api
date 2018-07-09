@@ -22,7 +22,7 @@ exports.handle = (version) => {
                 {version},
                 versionRecipientsCreator.generate(version),
                 versionSubjectGenerator.generate(version),
-                config.get("mailing").sender
+                configValueProvider.getValue("EMAILING_SENDER")
             ),
             rp(options)
 

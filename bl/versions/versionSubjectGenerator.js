@@ -5,5 +5,7 @@ exports.generate = (version) => {
         return `${version.projectName} - PASSED BETA - DEPLOYING TO PRODUCTION`;
     if (version.status.toLowerCase() === "complete")
         return `${version.projectName} Version ${version.versionId} - deployment COMPLETE`;
+    if (version.status.toLowerCase() === "fail")
+        return `${version.projectName} Version ${version.versionId} - FAILED to deploy`;
     return `${version.projectName} - ${version.status.toUpperCase()}.`;
 };
