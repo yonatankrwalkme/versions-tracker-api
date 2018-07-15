@@ -5,9 +5,9 @@ const versionBetaEventHandler = require('./versionEventHandler/versionBetaEventH
 
 exports.handleBuildEvent = function (build) {
     return bluebird.all([
-        clientEventsEmitter.notifyVersionChange(build),
-        versionInitCompleteEventHandler.handle(build),
-        versionBetaEventHandler.handle(build)
+        clientEventsEmitter.notifyVersionChange(build)
+        // versionInitCompleteEventHandler.handle(build),
+        // versionBetaEventHandler.handle(build)
     ]).then((results) => {
         return results;
     }).error((error) => {
