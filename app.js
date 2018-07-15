@@ -16,10 +16,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const routes = require('./routes');
 
+
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
+    var allowedOrigins = ['http://tracker-client.getjaco.com', 'https://tracker-client.getjaco.com', 'http://localhost:3000','http://swagger-dev.walkme.local'];
+    var origin = req.headers.origin;
+    if(allowedOrigins.indexOf(origin) > -1){
+        res.setHeader('Access-Control-Allow-Origin', origin);
+    }
+    res.header('Access-Control-Allow-Methods', 'GET, OPTIONS, POST');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.header('Access-Control-Allow-Credentials', true);
+    return next();
 });
 
 routes(app);

@@ -39,7 +39,8 @@ const augment = (projectBuckets) => {
 };
 
 const appendImage = (commitData) => {
-    const imageName = `${commitData.name.replace(".", "")}.jpg`;
+    const commitNames = commitData.name.split(".");
+    const imageName = `${commitNames[0].toLowerCase()}${commitNames[0].toUpperCase()}.jpg`;
     commitData.imageUrl = `${configValueProvider.getValue("VERSIONS_TRACKER_CLIENT_URL")}/employees/${imageName}`;
     // var num = Math.round(Math.random() * 100) + 1;
     // var isMale = (num % 2) === 0;

@@ -1,6 +1,5 @@
-const io = require('./index');
-
 exports.notifyVersionChange = function (eventData) {
+    console.log('socket.io - trying to send to clients');
     io.emit('versionEvent', eventData);
     return Promise.resolve();
 };
