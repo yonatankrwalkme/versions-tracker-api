@@ -8,9 +8,8 @@ const eventsEmitter = require('../../eventsManager/clientEventsEmitter');
 const rp = require('request-promise');
 
 exports.handle = (version) => {
-
     version.status = "deploying";
-    const ciApproveVersionLink = `${configValueProvider.getValue('versionTrackerApiUrl')}?versionId=${version.versionId}`;
+    const ciApproveVersionLink = `${configValueProvider.getValue('VERSION_TRACKER_API_URL')}?versionId=${version.versionId}`;
     const options = {
         uri : ciApproveVersionLink
     };
@@ -23,7 +22,7 @@ exports.handle = (version) => {
                 {version},
                 versionRecipientsCreator.generate(version),
                 versionSubjectGenerator.generate(version),
-                config.get("mailing").sender
+                configValueProvider.getValue("EMAILING_SENDER")
             ),
             rp(options)
 

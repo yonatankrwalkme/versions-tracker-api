@@ -1,7 +1,7 @@
 const emailer = require('../../emailer/emailer');
 const versionRecipientsCreator = require('../versionRecipientsCreator');
 const versionSubjectGenerator = require('../versionSubjectGenerator');
-const config = require('config');
+const configValueProvider = require('../../../services/configValueProvider');
 
 exports.handle = (version) => {
     if (version.status !== "init" && version.status !== "complete")
@@ -12,5 +12,5 @@ exports.handle = (version) => {
         {version},
         versionRecipientsCreator.generate(version),
         versionSubjectGenerator.generate(version),
-        config.get("mailing").sender);
+        configValueProvider.getValue("EMAILING_SENDER"));
 };

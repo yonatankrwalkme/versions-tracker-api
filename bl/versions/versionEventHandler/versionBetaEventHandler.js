@@ -5,17 +5,7 @@ const betaApprovalManager = require('../../betaApprovalsManager/betaApprovalsMan
 const versionRecipientsCreator = require('../versionRecipientsCreator');
 const approvalLinksGenerator = require('../../betaApprovalsManager/approvalLinksGenerator');
 const versionSubjectGenerator = require('../versionSubjectGenerator');
-
-function sendToAdmins(version, approvalLinks) {
-    return emailer.sendMail('version-beta-approval', {
-            approvalLinks,
-            version
-        },
-        // ["yonatan.k@walkme.com","tomer.l@walkme.com","itai.s@walkme.com"], // TODO : Redo this.
-        ["yonatan.k@walkme.com"],
-        versionSubjectGenerator.generate(version),
-        configValueProvider.getValue("emailingSender"))
-}
+const adminSender = require('../adminEmailSender');
 
 function sendToIndividuals(version, approvalLinks) {
     return approvalLinks.forEach((approvalLink) => {
@@ -25,7 +15,7 @@ function sendToIndividuals(version, approvalLinks) {
             },
             versionRecipientsCreator.generate(version),
             versionSubjectGenerator.generate(version),
-            configValueProvider.getValue("emailingSender"))
+            configValueProvider.getValue("EMAILING_SENDER"))
     });
 }
 
@@ -36,7 +26,7 @@ exports.handle = (version) => {
     return betaApprovalManager.createApprovals(version).then((approvals) => {
         const approvalLinks = approvalLinksGenerator.generate(approvals);
         return bluebird.all([
-            sendToAdmins(version, approvalLinks),
+            adminSender.sendToAdmins('version-beta-approval',{version, approvalLinks}),
             sendToIndividuals(version, approvalLinks),
         ]);
     })
