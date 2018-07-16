@@ -1,7 +1,7 @@
 const uuidv1 = require('uuid/v1');
 
 function fixUserName(emailUserName) {
-    if (!emailUserName.include("@"))
+    if (!emailUserName.includes("@"))
         return emailUserName;
 
     const emailSplit = emailUserName.split("@");
