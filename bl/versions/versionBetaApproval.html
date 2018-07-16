@@ -1,0 +1,26 @@
+<div>
+    <div>{{version.projectName}} Version {{version.versionId}} - Beta<span class="deployment">{{version.status}}:</span></div>
+    <table width="640" cellpadding="0" cellspacing="0" border="0" class="wrapper" bgcolor="#FFFFFF">
+        {{#approvalLinks}}
+        <tr>
+            <td align="center" valign="top">
+                <table width="600" cellpadding="0" cellspacing="0" border="0" class="container">
+                    <tr>
+                        <td width="300" class="mobile" align="center" valign="top">
+                            {{committer}}
+                        </td>
+                        <td height="10" style="font-size:10px; line-height:10px;" class="mobileOn">&nbsp;</td>
+                        <td width="300" class="mobile" align="center" valign="top">
+                            <a href="{{accept}}">Approve </a>
+                        </td>
+                        <td height="10" style="font-size:10px; line-height:10px;" class="mobileOn">&nbsp;</td>
+                        <td width="300" class="mobile" align="center" valign="top">
+                            <a href="{{reject}}">Decline</a>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        {{/approvalLinks}}
+    </table>
+</div>

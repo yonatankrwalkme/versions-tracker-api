@@ -1,18 +1,20 @@
-const rp = require('request-promise');
-const configValueProvider = require('../../services/configValueProvider');
-const emailerApi = `${configValueProvider.getValue("BACKSTAGE_API_URL")}/emailing`;
+const emailGenerator = require('../../services/emailGenerator');
 
 exports.sendMail = (templateName, dataModel, recipients, subject, sender) => {
-    const mailModel = {templateName, dataModel, recipients, subject, sender};
-    const options = {
-        method: 'POST',
-        uri: emailerApi,
-        body: mailModel,
-        json: true // Automatically stringifies the body to JSON
-    };
 
-    return rp(options).catch((err) => {
-        console.log(`sendMail`, err);
-        return err
+    return emailGenerator.generateEmail(templateName, dataModel).then((email) => {
+
+        var send = require('gmail-send')({
+            user: sender,
+            pass: 'hcgxx5%Up',
+            to: recipients,
+            subject: subject,
+            html: email
+        });
+
+        return send({}, function (err, res) {
+            console.log('email sending callback returned: err:', err, '; res:', res);
+            return res;
+        });
     });
 };
