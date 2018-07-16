@@ -1,11 +1,11 @@
 {
-  "VERSIONS_TRACKER_CLIENT_URL" : "http://localhost:3000",
+  "VERSIONS_TRACKER_CLIENT_URL" : "http://tracker-client.getjaco.com",
   "DB_SCHEMA_NAME" : "versions_manager",
   "DB_USER" : "versionsManager",
   "DB_PASSWORD" : "versionsManager",
   "DB_HOST" : "localhost",
-  "BACKSTAGE_API_URL" : "http://localhost:3002",
+  "BACKSTAGE_API_URL" : "http://backstageapi.walkme.local",
   "EMAILING_SUFFIX": "@walkme.com",
   "EMAILING_SENDER" : "insights-deployment@walkme.com",
-  "VERSION_TRACKER_API_URL" : "http://localhost:3001"
+  "VERSION_TRACKER_API_URL" : "http://tracker-api.getjaco.com"
 }

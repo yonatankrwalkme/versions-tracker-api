@@ -26,7 +26,7 @@ exports.handle = (version) => {
     return betaApprovalManager.createApprovals(version).then((approvals) => {
         const approvalLinks = approvalLinksGenerator.generate(approvals);
         return bluebird.all([
-            adminSender.sendToAdmins('version-beta-approval',{version, approvalLinks}),
+            adminSender.sendToAdmins('version-beta-approval', {version, approvalLinks}),
             sendToIndividuals(version, approvalLinks),
         ]);
     })
