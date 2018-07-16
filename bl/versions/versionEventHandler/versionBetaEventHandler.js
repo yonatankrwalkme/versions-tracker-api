@@ -20,14 +20,14 @@ function sendToIndividuals(version, approvalLinks) {
 }
 
 exports.handle = (version) => {
-    if (version.status !== "beta")
+    // if (version.status !== "beta")
         return Promise.resolve();
 
-    return betaApprovalManager.createApprovals(version).then((approvals) => {
-        const approvalLinks = approvalLinksGenerator.generate(approvals);
-        return bluebird.all([
-            adminSender.sendToAdmins('version-beta-approval', {version, approvalLinks}),
-            sendToIndividuals(version, approvalLinks),
-        ]);
-    })
+    // return betaApprovalManager.createApprovals(version).then((approvals) => {
+    //     const approvalLinks = approvalLinksGenerator.generate(approvals);
+    //     return bluebird.all([
+            // adminSender.sendToAdmins('version-beta-approval', {version, approvalLinks}),
+            // sendToIndividuals(version, approvalLinks),
+    //     ]);
+    // })
 };
