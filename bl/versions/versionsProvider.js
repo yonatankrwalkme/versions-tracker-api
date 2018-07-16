@@ -4,8 +4,8 @@ const configValueProvider = require('../../services/configValueProvider');
 const splitIntoBuckets = (versions) => {
     const buckets = {};
 
-    for (var i = 0; i < versions.length; i++) {
-        var version = versions[i];
+    for (let i = 0; i < versions.length; i++) {
+        const version = versions[i];
         console.log(version);
         const name = version.projectName.toLowerCase();
         let workedOnBucket = buckets[name];
@@ -14,7 +14,7 @@ const splitIntoBuckets = (versions) => {
             workedOnBucket = buckets[name];
         }
 
-        if (workedOnBucket.length < 2 && (workedOnBucket.length == 0 || workedOnBucket[0].status != 'complete')) {
+        if (workedOnBucket.length < 2 && (workedOnBucket.length === 0 || workedOnBucket[0].status !== 'complete')) {
             workedOnBucket.push(version)
         }
     }
@@ -39,7 +39,7 @@ const augment = (projectBuckets) => {
 };
 
 const appendImage = (commitData) => {
-    let commitName;
+    let commitName = commitData.name;
 
     if (commitData.name.includes("@"))
         commitName = commitData.name.split("@")[0];
@@ -47,13 +47,6 @@ const appendImage = (commitData) => {
     commitName = commitName.split(".");
     let imageName = `${commitName[0].toLowerCase()}${commitName[1].toUpperCase()}.jpg`;
     commitData.imageUrl = `${configValueProvider.getValue("VERSIONS_TRACKER_CLIENT_URL")}/${imageName}`;
-    // var num = Math.round(Math.random() * 100) + 1;
-    // var isMale = (num % 2) === 0;
-    // if (isMale) {
-    //     commitData.imageUrl = `https://randomuser.me/api/portraits/men/${num}.jpg`
-    // } else {
-    //     commitData.imageUrl = `https://randomuser.me/api/portraits/women/${num}.jpg`
-    // }
 };
 
 exports.provide = function () {
