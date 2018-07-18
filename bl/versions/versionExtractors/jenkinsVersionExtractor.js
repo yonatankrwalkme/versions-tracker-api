@@ -1,11 +1,25 @@
 const uuidv1 = require('uuid/v1');
 
+const fixToUserName = (commitName) => {
+
+    const githubusers = {
+        "itayadler": "itay.a"
+    };
+
+    let githubUserToUser = githubusers[commitName];
+    return githubUserToUser ? githubUserToUser : commitName;
+};
+
+
 function fixUserName(emailUserName) {
     if (!emailUserName.includes("@"))
-        return emailUserName;
+        return fixToUserName(emailUserName);
 
-    const emailSplit = emailUserName.split("@");
-    return emailSplit[0];
+    let emailSplit = emailUserName.split("@")[0];
+
+    emailSplit = fixToUserName(emailSplit);
+
+    return emailSplit;
 }
 
 function fixUserNames(commits) {

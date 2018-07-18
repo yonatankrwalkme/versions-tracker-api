@@ -38,6 +38,7 @@ const augment = (projectBuckets) => {
     return projectBuckets;
 };
 
+
 const appendImage = (commitData) => {
     let commitName = commitData.name;
 
