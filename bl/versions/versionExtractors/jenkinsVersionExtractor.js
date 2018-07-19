@@ -3,7 +3,8 @@ const uuidv1 = require('uuid/v1');
 const fixToUserName = (commitName) => {
 
     const githubusers = {
-        "itayadler": "itay.a"
+        "itayadler": "itay.a",
+        "serelk" : "sergey.y"
     };
 
     let githubUserToUser = githubusers[commitName];
