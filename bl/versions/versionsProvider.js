@@ -14,9 +14,13 @@ const splitIntoBuckets = (versions) => {
             workedOnBucket = buckets[name];
         }
 
-        if (workedOnBucket.length < 2 && (workedOnBucket.length === 0 || workedOnBucket[0].status !== 'complete')) {
-            workedOnBucket.push(version)
-        }
+        if ((workedOnBucket.length  === 2) || (workedOnBucket.length > 0 && workedOnBucket[0].status === 'complete'))
+            continue;
+
+        if (workedOnBucket.length > 0 && workedOnBucket[0].status === 'beta' && version.status==='init')
+            continue;
+
+        workedOnBucket.push(version)
     }
 
     return buckets;
