@@ -23,6 +23,9 @@ const splitIntoBuckets = (versions) => {
         if (workedOnBucket.length > 0 && workedOnBucket[0].status === 'init' && version.status==='init')
             continue;
 
+        if (workedOnBucket.length > 0 && workedOnBucket[0].status === 'fail' && version.status==='init')
+            continue;
+
         workedOnBucket.push(version)
     }
 
