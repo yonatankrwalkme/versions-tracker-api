@@ -1,39 +1,6 @@
 const VersionsRepository = require('../../dal/versions/versionsRepository');
 const configValueProvider = require('../../services/configValueProvider');
-
-const splitIntoBuckets = (versions) => {
-    const buckets = {};
-
-    for (let i = 0; i < versions.length; i++) {
-        const version = versions[i];
-        console.log(version);
-        const name = version.projectName.toLowerCase();
-        let workedOnBucket = buckets[name];
-        if (!workedOnBucket) {
-            buckets[name] = [];
-            workedOnBucket = buckets[name];
-        }
-
-        if ((workedOnBucket.length  === 2) || (workedOnBucket.length > 0 && workedOnBucket[0].status === 'complete'))
-            continue;
-
-        if (workedOnBucket.length > 0 && workedOnBucket[0].status === 'beta' && version.status==='init')
-            continue;
-
-        if (workedOnBucket.length > 0 && workedOnBucket[0].status === 'init' && version.status==='init')
-            continue;
-
-        if (workedOnBucket.length > 0 && workedOnBucket[0].status === 'init' && version.status==='fail')
-            continue;
-
-        if (workedOnBucket.length > 0 && workedOnBucket[0].status === 'fail' && version.status==='init')
-            continue;
-
-        workedOnBucket.push(version)
-    }
-
-    return buckets;
-};
+const bucketsSplitter = require('./bucketsSplitter');
 
 const augment = (projectBuckets) => {
     for (projectName in projectBuckets)
@@ -68,7 +35,7 @@ exports.provide = function () {
         return VersionsRepository
             .getAll()
             .then((versions) => {
-                const projectsBuckets = splitIntoBuckets(versions);
+                const projectsBuckets = bucketsSplitter.splitIntoBuckets(versions);
                 resolve(augment(projectsBuckets));
             });
 
