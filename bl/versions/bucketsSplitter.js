@@ -11,7 +11,11 @@ exports.splitIntoBuckets = (versions) => {
             workedOnBucket = buckets[name];
         }
 
-        if (workedOnBucket.length === 0 || version.status === "complete") {
+        if (workedOnBucket.length > 0 && workedOnBucket[0].status === "complete") {
+            continue;
+        }
+
+        if (workedOnBucket.length === 0 || (version.status === "complete" && workedOnBucket.length < 2)) {
             workedOnBucket.push(version);
         }
     }

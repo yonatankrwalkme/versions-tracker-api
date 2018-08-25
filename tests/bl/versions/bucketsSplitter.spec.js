@@ -39,6 +39,14 @@ describe('bucketSplitter', function () {
             assert.equal(result["abc"][0].status, "complete");
         });
 
+        it('should return complete only', function () {
+            const inputVersions = [generateComplete(), generateBeta(), generateInit(), generateComplete(), generateBeta(), generateInit(), generateComplete(), generateBeta(), generateInit()];
+            const result = target.splitIntoBuckets(inputVersions);
+
+            assert.equal(result["abc"].length, 1, "length is equal to 1");
+            assert.equal(result["abc"][0].status, "complete");
+        });
+
         it('should return beta and complete ', function () {
             const inputVersions = [generateBeta(), generateInit(), generateComplete()];
             const result = target.splitIntoBuckets(inputVersions);
@@ -49,7 +57,7 @@ describe('bucketSplitter', function () {
         });
 
         it('should return beta and complete ', function () {
-            const inputVersions = [generateFail(), generateBeta(), generateComplete()];
+            const inputVersions = [generateFail(), generateInit(), generateComplete(), generateBeta(), generateInit(), generateComplete(), generateBeta(), generateInit(), generateComplete()];
             const result = target.splitIntoBuckets(inputVersions);
 
             assert.equal(result["abc"].length, 2, "length is equal to 2");

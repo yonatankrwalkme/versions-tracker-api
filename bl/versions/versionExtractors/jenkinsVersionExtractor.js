@@ -4,7 +4,8 @@ const fixToUserName = (commitName) => {
 
     const githubusers = {
         "itayadler": "itay.a",
-        "serelk" : "sergey.y"
+        "serelk" : "sergey.y",
+        "alexpoo" : "alex.p"
     };
 
     let githubUserToUser = githubusers[commitName];
