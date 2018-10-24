@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const eventsManager =  require('../eventsManager/index');
+const clientEventsEmitter = require ('../eventsManager/clientEventsEmitter');
 const versionsProvider = require('./versionsProvider');
 const incomingBuildHandler = require('./incomingBuildHandler');
 const approvalFlowHandler = require ('../betaApprovalsManager/approvalFlowHandler');
@@ -18,16 +18,17 @@ router.get('/respondToApprovalLink', (req,res, next) => {
     });
 });
 
-router.get('/', function (req, res, next) {
-    versionsProvider.provide().then((versions) => {
-        res.json(versions);
-    })
+router.post('/dead-man-walking', (req,res, next) => {
+    const build = req.body;
+    return clientEventsEmitter.deadManWalkingEvent(build).then(() => {
+        res.json("OK");
+    });
 });
 
-router.get('/notifyChange', function (req, res, next) {
-    console.log('notifyingChange');
-    eventsManager.notifyVersionChange(versions_data[0]);
-    res.json("OK");
+router.get('/', function (req, res, next) {
+    return versionsProvider.provide().then((versions) => {
+        res.json(versions);
+    })
 });
 
 module.exports = router;

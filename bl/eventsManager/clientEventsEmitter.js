@@ -4,6 +4,11 @@ exports.notifyVersionChange = function (eventData) {
     return Promise.resolve();
 };
 
+exports.deadManWalkingEvent = function (build) {
+    io.emit('deadManWalking', build);
+    return Promise.resolve();
+};
+
 exports.notifyBetaStatusChange = function (eventData) {
     io.emit('betaStatusChange', eventData);
     return Promise.resolve();
