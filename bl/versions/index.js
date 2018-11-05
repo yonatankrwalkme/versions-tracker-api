@@ -4,6 +4,7 @@ const clientEventsEmitter = require ('../eventsManager/clientEventsEmitter');
 const versionsProvider = require('./versionsProvider');
 const incomingBuildHandler = require('./incomingBuildHandler');
 const approvalFlowHandler = require ('../betaApprovalsManager/approvalFlowHandler');
+const featureNotifier = require('./featuresNotifier');
 
 router.post('/', function (req, res, next) {
     const build = req.body;
@@ -21,6 +22,13 @@ router.get('/respondToApprovalLink', (req,res, next) => {
 router.post('/dead-man-walking', (req,res, next) => {
     const build = req.body;
     return clientEventsEmitter.deadManWalkingEvent(build).then(() => {
+        res.json("OK");
+    });
+});
+
+router.post('/new-feature-deployed', (req,res, next) => {
+    const build = req.body;
+    return featureNotifier.checkForFeatureAndNotify(build).then(() => {
         res.json("OK");
     });
 });

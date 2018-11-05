@@ -9,6 +9,11 @@ exports.deadManWalkingEvent = function (build) {
     return Promise.resolve();
 };
 
+exports.newFeatureDeployedEvent = function (newFeatureData) {
+    io.emit('newFeatureDeployed', newFeatureData);
+    return Promise.resolve();
+};
+
 exports.notifyBetaStatusChange = function (eventData) {
     io.emit('betaStatusChange', eventData);
     return Promise.resolve();
