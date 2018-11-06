@@ -4,6 +4,7 @@ const versionSubjectGenerator = require('../versionSubjectGenerator');
 const configValueProvider = require('../../../services/configValueProvider');
 const stakeHoldersEmailSender = require('../stakeHoldersEmailSender');
 const bluebird = require('bluebird');
+const featuresNotifier = require('../featuresNotifier');
 
 exports.handle = (version) => {
     if (version.status !== "complete")
@@ -11,6 +12,7 @@ exports.handle = (version) => {
 
     return bluebird.all([
         stakeHoldersEmailSender.sendToStakeHolders('version-status', {version}),
+        featuresNotifier.checkForFeatureAndNotify(version),
         emailer.sendMail(
             `version-status`,
             {version},
