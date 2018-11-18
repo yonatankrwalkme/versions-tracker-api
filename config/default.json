@@ -4,7 +4,7 @@
   "DB_USER" : "versionsManager",
   "DB_PASSWORD" : "versionsManager",
   "DB_HOST" : "localhost",
-  "BACKSTAGE_API_URL" : "http://192.168.3.155",
+  "BACKSTAGE_API_URL" : "http://192.168.3.155:3000",
   "EMAILING_SUFFIX": "@walkme.com",
   "EMAILING_SENDER" : "insights-deployment@walkme.com",
   "VERSION_TRACKER_API_URL" : "http://tracker-api.getjaco.com"
