@@ -17,19 +17,22 @@ exports.checkForFeatureAndNotify = async (version) => {
 
     const feature = JSON.parse(await backstageApiHelper.getJiraIssue(featureKey));
     console.log(`feature =  ${JSON.stringify(feature)}`);
-    if (feature.fields.issuetype.name !== "Story" || !feature.fields.assignee) {
+    let isStory = feature.fields.issuetype.name === "Story";
+    if (!isStory || !feature.fields.assignee) {
         console.log(`checkForFeatureAndNotify - resolving empty : issuetype.name - ${feature.fields.issuetype.name}, feature.fields.assignee - ${feature.fields.assignee}`)
         return Promise.resolve();
     }
 
+    version.summery = feature.fields.summary;
+    version.key = feature.key;
+
     const newFeatureData = {
         "featureOwner": feature.fields.assignee.name,
-        "featureName": feature.fields.summary
+        "featureName": feature.fields.summary,
+        "isStory" : isStory
     };
 
-    console.log(`newFeatureData =  ${JSON.stringify(newFeatureData)}`);
     await clientEventsEmitter.newFeatureDeployedEvent(newFeatureData);
 
-    console.log(`Resolving after announcement`);
-    return Promise.resolve();
+    return Promise.resolve(newFeatureData);
 };

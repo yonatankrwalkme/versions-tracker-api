@@ -1,5 +1,5 @@
 <div>
-    <div>Version {{version.projectName}} <span class="deployment">{{version.status}}</span> with commits by:</div>
+    <div>{{version.projectName}} - {{version.key}} - {{version.summery}} <span class="deployment">{{version.status}}</span> with commits by:</div>
     {{#version.commits}}
     <p>
         <div>{{name}} : {{commitMessage}}</div>
