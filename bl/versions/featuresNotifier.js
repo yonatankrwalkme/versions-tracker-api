@@ -25,5 +25,6 @@ exports.checkForFeatureAndNotify = async (version) => {
         "featureName" : feature.fields.summary
     };
 
-    return clientEventsEmitter.newFeatureDeployedEvent(newFeatureData);
+    await clientEventsEmitter.newFeatureDeployedEvent(newFeatureData);
+    return Promise.resolve();
 };
