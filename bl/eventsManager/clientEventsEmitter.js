@@ -10,6 +10,7 @@ exports.deadManWalkingEvent = function (build) {
 };
 
 exports.newFeatureDeployedEvent = function (newFeatureData) {
+    console.log(`************** newFeatureDeployedEvent : ${JSON.stringify(newFeatureData)} *******************`);
     io.emit('newFeatureDeployed', newFeatureData);
     return Promise.resolve();
 };
