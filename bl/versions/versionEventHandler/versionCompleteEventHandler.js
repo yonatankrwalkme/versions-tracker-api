@@ -6,11 +6,11 @@ const bluebird = require('bluebird');
 const featuresNotifier = require('../featuresNotifier');
 
 function attachFeatureMailingList(featureCheckResponse) {
-    const emails = ["yonatan.k@walkme.com"];
+    const emails = [];
     if (!featureCheckResponse || !featureCheckResponse.isStory)
         return emails;
 
-    return emails.concat(["dor.d@walkme.com", "assaf.c@walkme.com", "adi.g@walkme.com"]);
+    return emails.concat(["yonatan.k@walkme.com", "dor.d@walkme.com", "assaf.c@walkme.com", "adi.g@walkme.com"]);
 }
 
 exports.handle = async (version) => {
