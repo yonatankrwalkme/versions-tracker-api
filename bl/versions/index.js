@@ -23,6 +23,15 @@ router.post('/dead-man-walking', (req,res, next) => {
     const build = req.body;
     return clientEventsEmitter.deadManWalkingEvent(build).then(() => {
         res.json("OK");
+        next();
+    });
+});
+
+router.get('/user-migrated', (req,res, next) => {
+    const email = req.query.email;
+    return clientEventsEmitter.deadManWalkingEvent(email).then(() => {
+        res.json("OK");
+        next();
     });
 });
 

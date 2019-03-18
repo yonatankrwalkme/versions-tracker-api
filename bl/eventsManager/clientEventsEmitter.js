@@ -9,6 +9,11 @@ exports.deadManWalkingEvent = function (build) {
     return Promise.resolve();
 };
 
+exports.userMigratedEvent = function (email) {
+    io.emit('userMigratedToDruid', email);
+    return Promise.resolve();
+};
+
 exports.newFeatureDeployedEvent = function (newFeatureData) {
     console.log(`************** newFeatureDeployedEvent : ${JSON.stringify(newFeatureData)} *******************`);
     io.emit('newFeatureDeployed', newFeatureData);
