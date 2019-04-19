@@ -16,7 +16,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const routes = require('./routes');
 
-
 app.use(function(req, res, next) {
     var allowedOrigins = ['http://tracker-client.getjaco.com', 'https://tracker-client.getjaco.com', 'http://localhost:3000','http://swagger-dev.walkme.local'];
     var origin = req.headers.origin;
